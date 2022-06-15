@@ -37,3 +37,5 @@ getCell_Track <- function(celltType="ASC", start = 44883309, end = 44931881,
     return(tracks)
     }
   }
+
+prueba <- getCell_Track(celltType = "EX")
