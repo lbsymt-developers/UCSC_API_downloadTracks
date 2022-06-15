@@ -15,9 +15,13 @@ getCell_Track <- function(celltType="ASC", start = 44883309, end = 44931881,
   file_cell <- paste0("data_AD_NatGen_2021/celltypes/", celltType, ".bw")
   Track_celltype <- importScore(file = file_cell,
                                 ranges= gr_1, format = "BigWig")
+  Track_celltype$dat <- coverageGR(Track_celltype$dat)
 
-  Track_celltype <- importScore(file = "data_AD_NatGen_2021/celltypes/EX.bw",
-                                ranges= gr_1, format = "BigWig")
+  optSty <- optimizeStyle(trackList(Track_celltype), theme="safe")
+  trackList <- optSty$tracks
+  viewerStyle <- optSty$style
+  vp <- viewTracks(trackList, gr=gr_1, viewerStyle=viewerStyle,
+                   autoOptimizeStyle=TRUE)
 
 
 }
