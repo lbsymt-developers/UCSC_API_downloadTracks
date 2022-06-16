@@ -36,7 +36,7 @@ Brick_load_data_from_mcool(Brick = My_BrickContainer,
 
 
 # load the Brick Container
-BrickContainer_dir <- file.path(tempdir(), "HiCBricks_vignette_test")
+BrickContainer_dir <- file.path(tempdir(), "mcool_to_Brick_test")
 My_BrickContainer <- load_BrickContainer(project_dir = BrickContainer_dir)
 
 # export the contact matrix to a a sparse matrix format and save it on a file
@@ -47,11 +47,11 @@ Brick_export_to_sparse(Brick=My_BrickContainer,
                        sep="\t")
 
 # create a dataframe containing the bintable
-bintable<-Brick_get_bintable(My_BrickContainer, resolution = 100000)
+bintable <- Brick_get_bintable(My_BrickContainer, resolution = 100000)
 
 require(GenomicRanges)
 
-df1<-data.frame(seqnames=seqnames(bintable),
+df1 <- data.frame(seqnames=seqnames(bintable),
                 start(bintable)-1,
                 ends=end(bintable),
                 names=c(rep(".",length(bintable))),
