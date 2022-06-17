@@ -16,12 +16,20 @@ Create_many_Bricks_from_mcool(output_directory = out_dir,
                               experiment_name = "Testing mcool creation",
                               remove_existing = TRUE)
 
-aver <- Create_many_Bricks_from_mcool(output_directory = out_dir,
+Create_many_Bricks_from_mcool(output_directory = out_dir,
                               file_prefix = "mcool_to_Brick_test",
                               mcool = mcool_path,
                               resolution = 10000000,
                               experiment_name = "Testing mcool creation",
                               remove_existing = TRUE)
+
+Create_many_Bricks_from_mcool(output_directory = out_dir,
+                              file_prefix = "mcool_to_Brick_test",
+                              mcool = mcool_path,
+                              resolution = 1000,
+                              experiment_name = "Testing mcool creation",
+                              remove_existing = TRUE)
+
 Brick_list_mcool_resolutions(mcool = mcool_path)
 out_dir <- file.path(tempdir(), "mcool_to_Brick_test")
 My_BrickContainer <- load_BrickContainer(project_dir = out_dir)
@@ -34,6 +42,13 @@ Brick_load_data_from_mcool(Brick = My_BrickContainer,
                            remove_prior = TRUE,
                            norm_factor = "Iterative-Correction")
 
+Brick_load_data_from_mcool(Brick = My_BrickContainer,
+                           mcool = mcool_path,
+                           resolution = 1000,
+                           cooler_read_limit = 10000000,
+                           matrix_chunk = 2000,
+                           remove_prior = TRUE,
+                           norm_factor = "Iterative-Correction")
 
 # load the Brick Container
 BrickContainer_dir <- file.path(tempdir(), "mcool_to_Brick_test")
@@ -47,7 +62,8 @@ Brick_export_to_sparse(Brick=My_BrickContainer,
                        sep="\t")
 
 # create a dataframe containing the bintable
-bintable <- Brick_get_bintable(My_BrickContainer, resolution = 10000)
+bintable <- Brick_get_bintable(My_BrickContainer, resolution = 10000000)
+df <- data.frame(bintable)
 
 require(GenomicRanges)
 
