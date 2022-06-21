@@ -23,6 +23,7 @@ Create_many_Bricks_from_mcool(output_directory = out_dir,
                               experiment_name = "Testing mcool creation",
                               remove_existing = TRUE)
 
+# ESTE PASO SE PUEDE CAMBIAR DEPENDIENDO DE LA LONGITUD DE SECUENCIA
 Create_many_Bricks_from_mcool(output_directory = out_dir,
                               file_prefix = "mcool_to_Brick_test",
                               mcool = mcool_path,
